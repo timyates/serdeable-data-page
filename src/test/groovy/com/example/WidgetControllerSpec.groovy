@@ -13,23 +13,18 @@ import spock.lang.Specification
 @MicronautTest
 class WidgetControllerSpec extends Specification {
 
-    @Shared @AutoCleanup @Inject @Client("/")
+    @Shared
+    @AutoCleanup
+    @Inject
+    @Client("/")
     HttpClient client
 
-    @Inject
-    WidgetRepository widgetRepository;
-
     void "test index with Page"() {
-        given:
-        def widget = new Widget()
-        widget.name = 'One'
-        widgetRepository.save(widget);
-
         when:
         def request = HttpRequest.GET("/widgets")
         client.toBlocking().retrieve(request, Page.class);
 
-        then :
+        then:
         noExceptionThrown()
     }
 }
