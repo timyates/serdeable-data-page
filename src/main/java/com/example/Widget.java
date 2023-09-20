@@ -1,7 +1,7 @@
 package com.example;
 
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "widgets")
